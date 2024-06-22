@@ -1119,7 +1119,7 @@ header {
     display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
-    *display: inline;
+    display: inline;
     width: 20px;
     height: 2px;
     color: #000;
@@ -1313,3 +1313,10 @@ input[type="text"] {
 
 .js .animate-box {
   opacity: 0; }
+
+.fixed-size-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover; /* Ensures the image covers the area without distorting */
+}
+
