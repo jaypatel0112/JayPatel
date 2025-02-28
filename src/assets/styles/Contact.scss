@@ -46,3 +46,40 @@ form {
   width: 100% !important;
   margin-bottom: 15px !important;
 }
+
+/* Ensure the input text inside the TextField is black */
+.contact-form .MuiInputBase-input {
+  color: black !important; /* Set input text color to black */
+}
+
+/* Ensure the label color is black */
+.contact-form .MuiInputLabel-root {
+  color: black !important;
+}
+
+/* Ensure the input background is white to see the black text clearly */
+.contact-form .MuiOutlinedInput-root {
+  background-color: white !important;
+}
+
+/* Change border color to visible contrast */
+.contact-form .MuiOutlinedInput-notchedOutline {
+  border-color: #ccc !important;
+}
+
+/* Ensure label stays black even when focused */
+.contact-form .MuiInputLabel-root.Mui-focused {
+  color: black !important;
+}
+
+/* Style for error messages (helperText) */
+.contact-form .MuiFormHelperText-root {
+  color: red !important; /* Set error message color to red */
+  font-size: 0.875rem; /* Match Material-UI's default helper text size */
+  margin-left: 0; /* Align with the input field */
+}
+
+/* Style for error state of TextField */
+.contact-form .Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: red !important; /* Set border color to red for error state */
+}
