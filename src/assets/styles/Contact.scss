@@ -1,85 +1,65 @@
-.contact_wrapper svg {
-  font-size: 1em;
-  vertical-align: middle;
-  margin-right: 5px;
+.contact-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-box {
+  padding: 2rem;
+  width: 100%;
+  max-width: none;
+}
+
+.contact-title {
+  color: white;
+}
+
+.contact-description {
+  color: #bbb;
 }
 
 .contact-form {
-  padding-top: 20px;
-
-  button {
-    float: right;
-    background-color: white;
-    color: #050f0b;
-  }
-
-  button:hover {
-    background-color: #5000ca;
-    color: white;
-  }
-
-  fieldset {
-    background-color: white;
-  }
-}
-
-label {
-  font-size: 1.2rem;
-  font-family: 'DomaineDispNar-Medium', sans-serif;
-}
-
-.form-flex {
   display: flex;
-  gap: 15px;
-  padding-bottom: 15px;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%; /* Ensure the form spans the full width */
 }
 
-.form-flex .MuiFormControl-root {
-  width: 100%;
+.contact-input-group {
+  display: flex;
+  gap: 1rem;
+  width: 100%; /* Ensure the input group spans the full width */
 }
 
-form {
-  width: 100% !important;
+.contact-input {
+  background-color: white;
+  border-radius: 4px;
+  flex: 1; /* Ensures both inputs share equal space */
+  width: 100%; /* Ensure the input spans the full width */
 }
 
-.body-form {
-  width: 100% !important;
-  margin-bottom: 15px !important;
+.contact-input .MuiOutlinedInput-root {
+  fieldset {
+    border-color: #666 !important;
+  }
+
+  &:hover fieldset {
+    border-color: white !important;
+  }
 }
 
-/* Ensure the input text inside the TextField is black */
-.contact-form .MuiInputBase-input {
-  color: black !important; /* Set input text color to black */
-}
-
-/* Ensure the label color is black */
-.contact-form .MuiInputLabel-root {
-  color: black !important;
-}
-
-/* Ensure the input background is white to see the black text clearly */
-.contact-form .MuiOutlinedInput-root {
+.contact-button {
   background-color: white !important;
-}
-
-/* Change border color to visible contrast */
-.contact-form .MuiOutlinedInput-notchedOutline {
-  border-color: #ccc !important;
-}
-
-/* Ensure label stays black even when focused */
-.contact-form .MuiInputLabel-root.Mui-focused {
   color: black !important;
-}
+  font-weight: bold;
+  margin-top: 1rem;
+  width: 100%; /* Ensure the button spans the full width */
 
-/* Style for error messages (helperText) */
-.contact-form .MuiFormHelperText-root {
-  color: red !important; /* Set error message color to red */
-  font-size: 0.875rem; /* Match Material-UI's default helper text size */
-  margin-left: 0; /* Align with the input field */
-}
-
-/* Style for error state of TextField */
-.contact-form .Mui-error .MuiOutlinedInput-notchedOutline {
-  border-color: red !important; /* Set border color to red for error state */
+  &:hover {
+    background-color: #5c01d4 !important;
+  }
 }
