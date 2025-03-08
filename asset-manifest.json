@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/JayPatel/static/css/main.ec1fd912.css",
-    "main.js": "/JayPatel/static/js/main.03e22ae5.js",
+    "main.css": "/JayPatel/static/css/main.c55eb99b.css",
+    "main.js": "/JayPatel/static/js/main.9ea0a6e5.js",
     "static/js/453.41811d64.chunk.js": "/JayPatel/static/js/453.41811d64.chunk.js",
     "static/media/bg-dark.jpg": "/JayPatel/static/media/bg-dark.d09ce8cf72da680478a0.jpg",
     "static/media/bg-light.jpg": "/JayPatel/static/media/bg-light.2de5b63a5b6014a839a2.jpg",
@@ -11,12 +11,12 @@
     "static/media/mock09.jpg": "/JayPatel/static/media/mock09.4ac5274f63bbf63f911b.jpg",
     "static/media/mock07.jpg": "/JayPatel/static/media/mock07.2784c0f93424309b43d5.jpg",
     "index.html": "/JayPatel/index.html",
-    "main.ec1fd912.css.map": "/JayPatel/static/css/main.ec1fd912.css.map",
-    "main.03e22ae5.js.map": "/JayPatel/static/js/main.03e22ae5.js.map",
+    "main.c55eb99b.css.map": "/JayPatel/static/css/main.c55eb99b.css.map",
+    "main.9ea0a6e5.js.map": "/JayPatel/static/js/main.9ea0a6e5.js.map",
     "453.41811d64.chunk.js.map": "/JayPatel/static/js/453.41811d64.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ec1fd912.css",
-    "static/js/main.03e22ae5.js"
+    "static/css/main.c55eb99b.css",
+    "static/js/main.9ea0a6e5.js"
   ]
 }
