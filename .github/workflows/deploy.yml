@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main # Trigger the workflow on push to the main branch
+  pull_request:
+    branches:
+      - main # Also run on PRs to ensure the build works before merging
+  workflow_dispatch: # Allow manual triggering from GitHub UI
 
 jobs:
   build-and-deploy:
@@ -19,18 +23,38 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16 # Use the Node.js version your app requires
+          cache: 'npm' # Cache npm dependencies for faster builds
 
       # Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm ci # Use 'ci' instead of 'install' for cleaner, more reliable builds
+
+      # Run tests (if you have them)
+      - name: Run tests
+        run: npm test -- --passWithNoTests # Continue even if no tests exist
 
       # Build the React app
       - name: Build the app
         run: npm run build
+        env:
+          CI: false # Prevents the build from failing on warnings
+
+      # Cache the build output
+      - name: Cache build output
+        uses: actions/cache@v3
+        with:
+          path: ./build
+          key: ${{ runner.os }}-build-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-build-
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
+        if: github.event_name != 'pull_request' # Only deploy on push, not PRs
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
+          cname: yourdomainhere.com # Optional: Add if you have a custom domain
+          force_orphan: true # Create a single commit instead of keeping the history
+          commit_message: "Deploy: ${{ github.event.head_commit.message }}"
