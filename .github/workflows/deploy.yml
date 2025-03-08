@@ -29,24 +29,18 @@ jobs:
       - name: Install dependencies
         run: npm ci # Use 'ci' instead of 'install' for cleaner, more reliable builds
 
-      # Run tests (if you have them)
+      # Run tests with CI=true to treat warnings as non-fatal
       - name: Run tests
-        run: npm test -- --passWithNoTests # Continue even if no tests exist
+        run: |
+          CI=true npm test -- --passWithNoTests --watchAll=false --transformIgnorePatterns "node_modules/(?!@axios)/"
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096" # Increase memory for Node.js
 
       # Build the React app
       - name: Build the app
         run: npm run build
         env:
           CI: false # Prevents the build from failing on warnings
-
-      # Cache the build output
-      - name: Cache build output
-        uses: actions/cache@v3
-        with:
-          path: ./build
-          key: ${{ runner.os }}-build-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-build-
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
@@ -55,6 +49,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-          cname: yourdomainhere.com # Optional: Add if you have a custom domain
-          force_orphan: true # Create a single commit instead of keeping the history
-          commit_message: "Deploy: ${{ github.event.head_commit.message }}"
+          force_orphan: true 
