@@ -63,3 +63,7 @@
     background-color: #5c01d4 !important;
   }
 }
+
+.MuiSnackbar-root {
+  z-index: 9999 !important;
+}
