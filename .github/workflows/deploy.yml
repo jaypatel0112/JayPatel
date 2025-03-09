@@ -29,29 +29,19 @@ jobs:
       - name: Install dependencies
         run: npm ci # Use 'ci' instead of 'install' for cleaner, more reliable builds
 
-
       # Build the React app
       - name: Build the app
         run: npm run build
         env:
           CI: false # Prevents the build from failing on warnings
 
-      # Cache the build output
-      - name: Cache build output
-        uses: actions/cache@v3
-        with:
-          path: ./build
-          key: ${{ runner.os }}-build-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-build-
-
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         if: github.event_name != 'pull_request' # Only deploy on push, not PRs
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Use GITHUB_TOKEN or replace with a PAT
           publish_dir: ./build
-          cname: yourdomainhere.com # Optional: Add if you have a custom domain
+          # cname: yourdomainhere.com # Optional: Add if you have a custom domain
           force_orphan: true # Create a single commit instead of keeping the history
           commit_message: "Deploy: ${{ github.event.head_commit.message }}"
