@@ -3,45 +3,29 @@ name: Deploy React App to GitHub Pages
 on:
   push:
     branches:
-      - main # Trigger the workflow on push to the main branch
-  pull_request:
-    branches:
-      - main # Also run on PRs to ensure the build works before merging
-  workflow_dispatch: # Allow manual triggering from GitHub UI
+      - main # Trigger on pushes to the main branch
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      # Checkout the repository
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16 # Use the Node.js version your app requires
-          cache: 'npm' # Cache npm dependencies for faster builds
+          node-version: 18 # Or your preferred version
 
-      # Install dependencies
-      - name: Install dependencies
-        run: npm ci # Use 'ci' instead of 'install' for cleaner, more reliable builds
+      - name: Install Dependencies
+        run: npm install
 
-      # Build the React app
-      - name: Build the app
+      - name: Build
         run: npm run build
-        env:
-          CI: false # Prevents the build from failing on warnings
 
-      # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
-        if: github.event_name != 'pull_request' # Only deploy on push, not PRs
-        uses: peaceiris/actions-gh-pages@v3
+        uses: https://github.com/jaypatel0112/JayPatel
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # Use GITHUB_TOKEN or replace with a PAT
-          publish_dir: ./build
-          # cname: yourdomainhere.com # Optional: Add if you have a custom domain
-          force_orphan: true # Create a single commit instead of keeping the history
-          commit_message: "Deploy: ${{ github.event.head_commit.message }}"
+          folder: build # The folder containing the build output
+          branch: gh-pages # The branch to deploy to
+          token: ${{ secrets.GITHUB_TOKEN }}
