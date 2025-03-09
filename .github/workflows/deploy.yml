@@ -15,12 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4  # Updated to latest version
+        uses: actions/checkout@v4  # Latest version
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18  # Use a stable version
+          node-version: 18  # Use stable version
 
       - name: Install dependencies
         run: npm install
@@ -29,7 +29,7 @@ jobs:
         run: npm run build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3  # Updated version
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./build  # Ensure this matches your React build output
 
@@ -41,10 +41,13 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-        - name: Deploy to GitHub Pages
-          uses: peaceiris/actions-gh-pages@v3
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: ./build
-            branch: gh-pages
-      
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages  # Correct input name
+          publish_dir: ./build
+          force_orphan: true  # Optional: Makes sure the gh-pages branch is clean
