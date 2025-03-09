@@ -30,15 +30,6 @@ const labelsSecond = [
     "Selenium",
 ];
 
-const labelsThird = [
-    "OpenAI",
-    "Groq",
-    "LangChain",
-    "Qdrant",
-    "Hugging Face",
-    "LlamaIndex",
-    "Streamlit",
-];
 
 function Expertise() {
     return (
