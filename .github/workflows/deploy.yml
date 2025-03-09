@@ -1,31 +1,36 @@
-name: Deploy React App to GitHub Pages
+name: Deploy React App
 
 on:
   push:
     branches:
-      - main # Trigger on pushes to the main branch
+      - main  # Adjust if using a different branch
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18 # Or your preferred version
-
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm install
 
-      - name: Build
+      - name: Build React App
         run: npm run build
 
-      - name: Deploy to GitHub Pages
-        uses: https://github.com/jaypatel0112/JayPatel
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          folder: build # The folder containing the build output
-          branch: gh-pages # The branch to deploy to
-          token: ${{ secrets.GITHUB_TOKEN }}
+          path: ./build  # Ensure this matches your React build output
+
+  deploy:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
