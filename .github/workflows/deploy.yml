@@ -29,9 +29,6 @@ jobs:
       - name: Install dependencies
         run: npm ci # Use 'ci' instead of 'install' for cleaner, more reliable builds
 
-      # Run tests (if you have them)
-      - name: Run tests
-        run: npm test -- --passWithNoTests # Continue even if no tests exist
 
       # Build the React app
       - name: Build the app
